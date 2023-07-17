@@ -90,7 +90,7 @@ import {
 } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import { onMounted, ref } from 'vue';
-import PriceService from '@/services/Prices';
+import PriceService from '@/services/PricesService';
 
 const prices = ref<number[][]>([]);
 

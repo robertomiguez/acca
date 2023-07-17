@@ -5,20 +5,21 @@
         label="Purchased Amount"
         labelPlacement="floating"
         type="number"
+        v-model="purchaseAmount"
       ></ion-input>
     </ion-item>
     <ion-item>
       <ion-select
         label="Crypto Coin"
         labelPlacement="floating"
-        value="BTC"
         okText="Okay"
         cancelText="Dismiss"
+        v-model="cryptoCoin"
       >
         <ion-select-option
           v-for="criptoCoin in criptoCoins"
           :key="criptoCoin.id"
-          value="{{criptoCoin.symbol}}"
+          :value="JSON.stringify(criptoCoin)"
           >{{ criptoCoin.name }}</ion-select-option
         >
       </ion-select>
@@ -27,15 +28,15 @@
       <ion-select
         label="Fiat"
         labelPlacement="floating"
-        value="USD"
         okText="Okay"
         cancelText="Dismiss"
+        v-model="fiatCoin"
       >
         <ion-select-option
           v-for="fiatCoin in fiatCoins"
           :key="fiatCoin.id"
-          value="{{fiatCoin.symbol}}"
-          >{{ fiatCoin.name }}</ion-select-option
+          :value="JSON.stringify(fiatCoin)"
+          >{{ fiatCoin.symbol }} - {{ fiatCoin.name }}</ion-select-option
         >
       </ion-select>
     </ion-item>
@@ -43,14 +44,14 @@
       <ion-select
         label="Periodicity"
         labelPlacement="floating"
-        value="1"
         okText="Okay"
         cancelText="Dismiss"
+        v-model="periodicity"
       >
         <ion-select-option
           v-for="periodicity in periodicities"
           :key="periodicity.id"
-          value="{{periodicity.id}}"
+          :value="JSON.stringify(periodicity)"
           >{{ periodicity.name }}</ion-select-option
         >
       </ion-select>
@@ -59,14 +60,14 @@
       <ion-select
         label="Starting"
         labelPlacement="floating"
-        value="30"
         okText="Okay"
         cancelText="Dismiss"
+        v-model="starting"
       >
         <ion-select-option
           v-for="starting in startings"
           :key="starting.id"
-          value="{{starting.id}}"
+          :value="JSON.stringify(starting)"
           >{{ starting.name }}</ion-select-option
         >
       </ion-select>
@@ -84,19 +85,27 @@ import {
   IonSelectOption,
 } from '@ionic/vue';
 
-import CryptoCoinsService from '@/services/CryptoCoins';
-import FiatCoinsService from '@/services/FiatCoins';
-import PeriodicitiesService from '@/services/Periodicities';
-import StartingsService from '@/services/Startings';
+import CryptoCoinsService from '@/services/CryptoCoinsService';
+import FiatCoinsService from '@/services/FiatCoinsService';
+import PeriodicitiesService from '@/services/PeriodicitiesService';
+import StartingsService from '@/services/StartingsService';
 
-import { Coin } from '@/types/Coin';
-import { Periodicity } from '@/types/Periodicity';
-import { Starting } from '@/types/Starting';
+import { Coin } from '@/types/CoinType';
+import { Periodicity } from '@/types/PeriodicityType';
+import { Starting } from '@/types/StartingType';
+
+import { useSettingsStore } from '@/stores/settingsStore';
+import { storeToRefs } from 'pinia';
+
+const { purchaseAmount, cryptoCoin, fiatCoin, periodicity, starting } =
+  storeToRefs(useSettingsStore());
 
 const criptoCoins = ref<Coin[]>([]);
 const fiatCoins = ref<Coin[]>([]);
 const periodicities = ref<Periodicity[]>([]);
 const startings = ref<Starting[]>([]);
+
+// const setupStore = useSettingsStore();
 
 onMounted(async () => {
   try {
