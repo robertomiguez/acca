@@ -1,8 +1,12 @@
 class PriceService {
-  static async getPrices() {
-    const response = await fetch(
-      'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=USD&days=183&interval=daily',
-    );
+  static async getPrices(
+    cryptoCoinId: string,
+    fiatCoinId: string,
+    startingId: number,
+  ) {
+    const url = `https://api.coingecko.com/api/v3/coins/${cryptoCoinId}/market_chart?vs_currency=${fiatCoinId}&days=${startingId}&interval=daily`;
+    console.log('url: ', url);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
