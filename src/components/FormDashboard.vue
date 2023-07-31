@@ -12,8 +12,6 @@
       <ion-select
         label="Crypto Coin"
         labelPlacement="floating"
-        okText="Okay"
-        cancelText="Dismiss"
         v-model="cryptoCoin"
         :compareWith="compareWith"
       >
@@ -29,8 +27,6 @@
       <ion-select
         label="Fiat"
         labelPlacement="floating"
-        okText="Okay"
-        cancelText="Dismiss"
         v-model="fiatCoin"
         :compareWith="compareWith"
       >
@@ -46,8 +42,6 @@
       <ion-select
         label="Periodicity"
         labelPlacement="floating"
-        okText="Okay"
-        cancelText="Dismiss"
         v-model="periodicity"
         :compareWith="compareWith"
       >
@@ -63,8 +57,6 @@
       <ion-select
         label="Starting"
         labelPlacement="floating"
-        okText="Okay"
-        cancelText="Dismiss"
         v-model="starting"
         :compareWith="compareWith"
       >
@@ -80,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue';
+import { onMounted, ref, watch, watchEffect } from 'vue';
 import {
   IonCard,
   IonInput,
@@ -99,20 +91,22 @@ import { Periodicity } from '@/types/PeriodicityType';
 import { Starting } from '@/types/StartingType';
 
 import { useSettingsStore } from '@/stores/settingsStore';
+import { useTransactionStore } from '@/stores/transactionStore';
 import { storeToRefs } from 'pinia';
 import PriceService from '@/services/PricesService';
 
+const settingsStore = useSettingsStore();
+const transactionStore = useTransactionStore();
+
 const { purchaseAmount, cryptoCoin, fiatCoin, periodicity, starting } =
-  storeToRefs(useSettingsStore());
+  storeToRefs(settingsStore);
+const { prices } = storeToRefs(transactionStore);
+const { fillTransactions } = transactionStore;
 
 const criptoCoins = ref<Coin[]>([]);
 const fiatCoins = ref<Coin[]>([]);
 const periodicities = ref<Periodicity[]>([]);
 const startings = ref<Starting[]>([]);
-
-const prices = ref<number[][]>([]);
-
-// const setupStore = useSettingsStore();
 
 onMounted(async () => {
   try {
@@ -127,17 +121,28 @@ onMounted(async () => {
 
 watchEffect(async () => {
   try {
-    // TODO: after that fill the calcs
     prices.value = await PriceService.getPrices(
-      cryptoCoin.value.id,
-      fiatCoin.value.id,
-      starting.value.id,
+      cryptoCoin.value?.id as string,
+      fiatCoin.value?.id as string,
+      starting.value?.id as number,
     );
-    console.log('prices', prices.value);
+    prices.value.pop(); // drop the last e current price
+    fillTransactions();
   } catch (e) {
-    console.error('Failed to fetch Bitcoin market chart', e);
+    console.error('Failed to fetch market chart', e);
   }
 });
+
+watch(
+  () => [periodicity.value, purchaseAmount.value],
+  () => {
+    try {
+      fillTransactions();
+    } catch (e) {
+      console.error('Failed to fill transactions', e);
+    }
+  },
+);
 
 // select component is working with objects
 const compareWith = (o1: { id: any }, o2: { id: any }) => {

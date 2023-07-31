@@ -26,8 +26,8 @@
         </ion-tab-button>
 
         <ion-tab-button
-          tab="report"
-          href="/tabs/report"
+          tab="reportcrypto"
+          href="/tabs/reportcrypto"
         >
           <ion-icon
             aria-hidden="true"

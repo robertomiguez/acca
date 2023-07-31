@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Report</ion-title>
+        <ion-title>Report Crypto</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -34,11 +34,11 @@
             sizeMd="3"
             sizeXs="3"
             class="ion-text-center"
-            >Qty Acc BTC</ion-col
+            >Qty Acc {{ cryptoCoin?.symbol }}</ion-col
           >
         </ion-row>
         <ion-row
-          v-for="(price, key) in prices"
+          v-for="(transaction, key) in transactions"
           :key="key"
           class="ion-justify-content-center even-row"
         >
@@ -47,32 +47,33 @@
             sizeMd="3"
             sizeXs="3"
             class="ion-text-center"
-            >{{ price[0] }}</ion-col
+            >{{ transaction.dateTime }}</ion-col
           >
           <ion-col
             sizeLg="1"
             sizeMd="3"
             sizeXs="3"
             class="ion-text-center"
-            >{{ price[1] }}</ion-col
+            >{{ fiatCoin?.symbol }} {{ transaction.price?.toFixed(2) }}</ion-col
           >
           <ion-col
             sizeLg="2"
             sizeMd="3"
             sizeXs="3"
             class="ion-text-center"
-            >0.00062428 (€10)</ion-col
+          >
+            {{ fiatCoin?.symbol }}
+            {{ transaction.purchaseAcc }}</ion-col
           >
           <ion-col
             sizeLg="2"
             sizeMd="3"
             sizeXs="3"
             class="ion-text-center"
-            >0.00062428 (€10.00)</ion-col
+            >{{ transaction.quantityCryptoAcc?.toFixed(8) }}</ion-col
           >
         </ion-row>
       </ion-grid>
-      <ExploreContainer name="Tab 3 page" />
     </ion-content>
   </ion-page>
 </template>
@@ -88,21 +89,16 @@ import {
   IonGrid,
   IonRow,
 } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
-import { onMounted, ref } from 'vue';
-import PriceService from '@/services/PricesService';
+import { useSettingsStore } from '@/stores/settingsStore';
+import { useTransactionStore } from '@/stores/transactionStore';
+import { storeToRefs } from 'pinia';
 
-const prices = ref<number[][]>([]);
+const settingsStore = useSettingsStore();
+const transactionStore = useTransactionStore();
 
-// TODO: remove from here, get from pinia state
-onMounted(async () => {
-  try {
-    prices.value = await PriceService.getPrices();
-    console.log('prices', prices.value);
-  } catch (e) {
-    console.error('Failed to fetch Bitcoin market chart', e);
-  }
-});
+const { cryptoCoin, fiatCoin } = storeToRefs(settingsStore);
+const { transactions } = storeToRefs(transactionStore);
+console.warn(transactions.value);
 </script>
 
 <style scoped>

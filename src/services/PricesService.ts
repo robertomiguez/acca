@@ -3,9 +3,10 @@ class PriceService {
     cryptoCoinId: string,
     fiatCoinId: string,
     startingId: number,
-  ) {
-    const url = `https://api.coingecko.com/api/v3/coins/${cryptoCoinId}/market_chart?vs_currency=${fiatCoinId}&days=${startingId}&interval=daily`;
-    console.log('url: ', url);
+  ): Promise<number[][]> {
+    const url =
+      `https://api.coingecko.com/api/v3/coins/${cryptoCoinId}/` +
+      `market_chart?vs_currency=${fiatCoinId}&days=${startingId}&interval=daily`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

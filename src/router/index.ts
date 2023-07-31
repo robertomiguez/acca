@@ -24,8 +24,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Dashboard.vue'),
       },
       {
-        path: 'report',
-        component: () => import('@/views/Report.vue'),
+        path: 'reportcrypto',
+        component: () => import('@/views/ReportCrypto.vue'),
       },
     ],
   },
