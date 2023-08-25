@@ -100,9 +100,11 @@ const transactionStore = useTransactionStore();
 
 const { purchaseAmount, cryptoCoin, fiatCoin, periodicity, starting } =
   storeToRefs(settingsStore);
+
 const { prices } = storeToRefs(transactionStore);
 const { fillTransactions } = transactionStore;
 
+// initial states
 const criptoCoins = ref<Coin[]>([]);
 const fiatCoins = ref<Coin[]>([]);
 const periodicities = ref<Periodicity[]>([]);
@@ -114,6 +116,13 @@ onMounted(async () => {
     fiatCoins.value = await FiatCoinsService.getFiatCoins();
     periodicities.value = await PeriodicitiesService.getPeriodicities();
     startings.value = await StartingsService.getStartings();
+
+    // if first time get default values
+    purchaseAmount.value = purchaseAmount.value ?? 10;
+    cryptoCoin.value = cryptoCoin.value ?? criptoCoins.value[0];
+    fiatCoin.value = fiatCoin.value ?? fiatCoins.value[0];
+    periodicity.value = periodicity.value ?? periodicities.value[0];
+    starting.value = starting.value ?? startings.value[0];
   } catch (e) {
     console.error('Failed to fetch', e);
   }

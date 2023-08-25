@@ -19,7 +19,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     indent: 'off',
     'max-len': ['error', { code: 120, tabWidth: 2 }],
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': ['error', 'windows'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
