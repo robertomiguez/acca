@@ -3,6 +3,10 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>Dashboard</ion-title>
+        <ion-progress-bar
+          type="indeterminate"
+          v-show="loading"
+        ></ion-progress-bar>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -45,11 +49,17 @@ import {
   IonGrid,
   IonCol,
   IonRow,
-  IonCard,
+  IonProgressBar,
 } from '@ionic/vue';
 import FormDashboard from '@/components/FormDashboard.vue';
 import ResultDashboard from '@/components/ResultDashboard.vue';
 import ChartDashboard from '@/components/ChartDashboard.vue';
+
+import { useSettingsStore } from '@/stores/settingsStore';
+import { storeToRefs } from 'pinia';
+
+const settingsStore = useSettingsStore();
+const { loading } = storeToRefs(settingsStore);
 </script>
 
 <style scoped>
