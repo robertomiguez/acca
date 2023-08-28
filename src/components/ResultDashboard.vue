@@ -14,7 +14,7 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        <h2>Total Value</h2>
+        <h2>Total Available</h2>
         <p>{{ fiatCoin?.symbol }} {{ (purchaseAcc + profit).toFixed(2) }}</p>
       </ion-label>
     </ion-item>
