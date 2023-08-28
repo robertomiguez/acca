@@ -98,7 +98,6 @@ const transactionStore = useTransactionStore();
 
 const { cryptoCoin, fiatCoin } = storeToRefs(settingsStore);
 const { transactions } = storeToRefs(transactionStore);
-console.warn(transactions.value);
 </script>
 
 <style scoped>

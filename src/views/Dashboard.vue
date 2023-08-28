@@ -27,10 +27,7 @@
             sizeMd="6"
             sizeXs="12"
           >
-            <ion-card>
-              <h1 green>18</h1>
-              <p>Homologadas</p>
-            </ion-card>
+            <ChartDashboard />
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -52,6 +49,13 @@ import {
 } from '@ionic/vue';
 import FormDashboard from '@/components/FormDashboard.vue';
 import ResultDashboard from '@/components/ResultDashboard.vue';
+import ChartDashboard from '@/components/ChartDashboard.vue';
 </script>
 
-<style scoped></style>
+<style scoped>
+ion-card {
+  height: 295px;
+  margin-left: -1px;
+  margin-right: -1px;
+}
+</style>

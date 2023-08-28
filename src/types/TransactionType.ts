@@ -4,4 +4,5 @@ export interface Transaction {
   purchaseAcc: number;
   quantityCrypto: number;
   quantityCryptoAcc: number;
+  valueCryptoAcc: number;
 }

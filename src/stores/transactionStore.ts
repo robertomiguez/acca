@@ -31,11 +31,12 @@ export const useTransactionStore = defineStore('transactionStore', () => {
           quantityCrypto = +purchaseAmount.value / +price[1];
           quantityCryptoAcc.value += +quantityCrypto;
           transactions.value.push({
-            dateTime: moment(price[0]).format('DD/MM/YY HH:mm'),
+            dateTime: moment(price[0]).format('DD/MM/YY'),
             price: dayPrice,
             purchaseAcc: purchaseAcc.value,
             quantityCrypto,
             quantityCryptoAcc: quantityCryptoAcc.value,
+            valueCryptoAcc: quantityCryptoAcc.value * dayPrice,
           });
         }
       });
