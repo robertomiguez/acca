@@ -98,7 +98,7 @@ import PriceService from '@/services/PricesService';
 const settingsStore = useSettingsStore();
 const transactionStore = useTransactionStore();
 
-const { purchaseAmount, cryptoCoin, fiatCoin, periodicity, starting } =
+const { purchaseAmount, cryptoCoin, fiatCoin, periodicity, starting, loading } =
   storeToRefs(settingsStore);
 
 const { prices } = storeToRefs(transactionStore);
@@ -112,10 +112,12 @@ const startings = ref<Starting[]>([]);
 
 onMounted(async () => {
   try {
+    loading.value = true;
     criptoCoins.value = await CryptoCoinsService.getCryptoCoins();
     fiatCoins.value = await FiatCoinsService.getFiatCoins();
     periodicities.value = await PeriodicitiesService.getPeriodicities();
     startings.value = await StartingsService.getStartings();
+    loading.value = false;
 
     // if first time get default values
     purchaseAmount.value = purchaseAmount.value ?? 10;
@@ -130,6 +132,7 @@ onMounted(async () => {
 
 watchEffect(async () => {
   try {
+    loading.value = true;
     prices.value = await PriceService.getPrices(
       cryptoCoin.value?.id as string,
       fiatCoin.value?.id as string,
@@ -137,6 +140,7 @@ watchEffect(async () => {
     );
     prices.value.pop(); // drop the last e current price
     fillTransactions();
+    loading.value = false;
   } catch (e) {
     console.error('Failed to fetch market chart', e);
   }
@@ -146,7 +150,9 @@ watch(
   () => [periodicity.value, purchaseAmount.value],
   () => {
     try {
+      loading.value = true;
       fillTransactions();
+      loading.value = false;
     } catch (e) {
       console.error('Failed to fill transactions', e);
     }

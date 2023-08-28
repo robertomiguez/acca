@@ -12,7 +12,15 @@ export const useSettingsStore = defineStore(
     const fiatCoin = ref<Coin>();
     const periodicity = ref<Periodicity>();
     const starting = ref<Starting>();
-    return { purchaseAmount, cryptoCoin, fiatCoin, periodicity, starting };
+    const loading = ref<boolean>(false);
+    return {
+      purchaseAmount,
+      cryptoCoin,
+      fiatCoin,
+      periodicity,
+      starting,
+      loading,
+    };
   },
   { persist: true },
 );
