@@ -9,7 +9,7 @@
         >
           <ion-icon
             aria-hidden="true"
-            :icon="triangle"
+            :icon="homeOutline"
           />
           <ion-label>Home</ion-label>
         </ion-tab-button>
@@ -20,7 +20,7 @@
         >
           <ion-icon
             aria-hidden="true"
-            :icon="ellipse"
+            :icon="barChartOutline"
           />
           <ion-label>Dashboard</ion-label>
         </ion-tab-button>
@@ -31,7 +31,7 @@
         >
           <ion-icon
             aria-hidden="true"
-            :icon="square"
+            :icon="readerOutline"
           />
           <ion-label>Report</ion-label>
         </ion-tab-button>
@@ -50,5 +50,5 @@ import {
   IonPage,
   IonRouterOutlet,
 } from '@ionic/vue';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { homeOutline, barChartOutline, readerOutline } from 'ionicons/icons';
 </script>
