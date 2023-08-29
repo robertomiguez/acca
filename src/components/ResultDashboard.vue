@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card class="ion-card-regular">
     <ion-item>
       <ion-label>
         <h2>Total Invested</h2>
@@ -8,13 +8,14 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        <h2>Profit</h2>
+        <h2 v-if="profit >= 0">Profit *</h2>
+        <h2 v-else>Loss *</h2>
         <p>{{ fiatCoin?.symbol }} {{ profit.toFixed(2) }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <h2>Total Available</h2>
+        <h2>Total Available *</h2>
         <p>{{ fiatCoin?.symbol }} {{ (purchaseAcc + profit).toFixed(2) }}</p>
       </ion-label>
     </ion-item>

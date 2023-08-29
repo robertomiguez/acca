@@ -34,6 +34,16 @@
             <ChartDashboard />
           </ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ResumeDashboard />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <DisclaimerDashboard />
+          </ion-col>
+        </ion-row>
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -54,6 +64,8 @@ import {
 import FormDashboard from '@/components/FormDashboard.vue';
 import ResultDashboard from '@/components/ResultDashboard.vue';
 import ChartDashboard from '@/components/ChartDashboard.vue';
+import ResumeDashboard from '@/components/ResumeDashboard.vue';
+import DisclaimerDashboard from '@/components/DisclaimerDashboard.vue';
 
 import { useSettingsStore } from '@/stores/settingsStore';
 import { storeToRefs } from 'pinia';
@@ -62,10 +74,4 @@ const settingsStore = useSettingsStore();
 const { loading } = storeToRefs(settingsStore);
 </script>
 
-<style scoped>
-ion-card {
-  height: 295px;
-  margin-left: -1px;
-  margin-right: -1px;
-}
-</style>
+<style scoped></style>
