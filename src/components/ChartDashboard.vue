@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card class="ion-card-regular">
     <canvas id="crypto-chart"></canvas>
   </ion-card>
 </template>

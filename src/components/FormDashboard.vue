@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card class="ion-card-regular">
     <ion-item>
       <ion-input
         label="Purchased Amount"
