@@ -3,8 +3,11 @@ class PeriodicitiesService {
     return [
       { id: 1, name: lang === 'en' ? 'daily' : 'diariamente' },
       { id: 7, name: lang === 'en' ? 'weekly' : 'semanalmente' },
-      { id: 14, name: lang === 'en' ? 'biweekly' : 'duas vezes por semana' },
-      { id: 30, name: lang === 'en' ? 'monthly' : 'mensalmente' },
+      {
+        id: 14,
+        name: lang === 'en' ? 'biweekly' : 'uma vez a cada duas semanas',
+      },
+      { id: 31, name: lang === 'en' ? 'monthly' : 'mensalmente' },
     ];
   }
 }
