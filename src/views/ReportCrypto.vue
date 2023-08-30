@@ -2,7 +2,11 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Report Crypto</ion-title>
+        <ion-title
+          >Report - {{ periodicity?.name.charAt(0).toUpperCase()
+          }}{{ periodicity?.name.slice(1) }} started
+          {{ starting?.name }}</ion-title
+        >
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -40,7 +44,8 @@
         <ion-row
           v-for="(transaction, key) in transactions"
           :key="key"
-          class="ion-justify-content-center even-row"
+          class="ion-justify-content-center"
+          :class="key % 2 == 0 ? 'odd-row' : 'even-row'"
         >
           <ion-col
             sizeLg="1"
@@ -96,13 +101,14 @@ import { storeToRefs } from 'pinia';
 const settingsStore = useSettingsStore();
 const transactionStore = useTransactionStore();
 
-const { cryptoCoin, fiatCoin } = storeToRefs(settingsStore);
+const { cryptoCoin, fiatCoin, periodicity, starting } =
+  storeToRefs(settingsStore);
 const { transactions } = storeToRefs(transactionStore);
 </script>
 
 <style scoped>
 .even-row {
-  background-color: rgb(250, 232, 232);
+  background-color: #dfe9fa;
 }
 
 .odd-row {
