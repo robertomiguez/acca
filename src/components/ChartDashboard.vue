@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { Chart, ChartItem, ChartConfiguration } from 'chart.js/auto';
 
-import { IonCard } from '@ionic/vue';
+import { IonCard, IonCardContent } from '@ionic/vue';
 import { onMounted, watchEffect } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useTransactionStore } from '@/stores/transactionStore';
