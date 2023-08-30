@@ -3,10 +3,11 @@
     <ion-header>
       <ion-toolbar>
         <ion-title
-          >Report - {{ periodicity?.name.charAt(0).toUpperCase()
-          }}{{ periodicity?.name.slice(1) }} started
-          {{ starting?.name }}</ion-title
-        >
+          >Report -
+          <span class="ion-text-capitalize">{{ periodicity?.name }}</span>
+          started
+          {{ starting?.name }}
+        </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">

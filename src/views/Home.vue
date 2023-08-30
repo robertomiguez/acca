@@ -20,7 +20,7 @@
                 class="img"
               />
               <ion-card-header>
-                <ion-card-title style="text-align: center"
+                <ion-card-title class="ion-text-center"
                   ><ion-button
                     size="small"
                     @click="() => router.push('/tabs/dashboard')"

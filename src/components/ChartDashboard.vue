@@ -1,6 +1,17 @@
 <template>
   <ion-card class="ion-card-regular">
-    <canvas id="crypto-chart"></canvas>
+    <ion-card-content style="height: 273px">
+      <canvas id="crypto-chart"></canvas>
+      <div class="ion-text-end ion-padding-top">
+        Powered by
+        <a
+          href="https://www.coingecko.com/en/api"
+          target="_blank"
+        >
+          CoinGecko
+        </a>
+      </div>
+    </ion-card-content>
   </ion-card>
 </template>
 
@@ -27,7 +38,7 @@ const chartData: ChartConfiguration = {
   },
   options: {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
   },
 };
 

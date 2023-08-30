@@ -26,7 +26,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
   margin-right: -1px;
   text-align: center;
   @media (max-width: 720px) {
-    height: 210px;
+    height: 180px;
     text-align: left;
   }
 }
@@ -37,7 +37,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
   margin-right: -1px;
   text-align: center;
   @media (max-width: 720px) {
-    height: 90px;
+    height: 100px;
     text-align: left;
   }
 }
