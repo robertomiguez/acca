@@ -11,8 +11,8 @@
           <ion-col size="12">
             <ion-card class="card-main">
               <ion-card-content>
-                Any Coin cost averaging is the practice of investing any coin
-                amount on a regular basis, regardless of the price
+                Dollar cost averaging (DCA) is the practice of investing a fixed
+                amount on a regular basis, regardless of the price.
               </ion-card-content>
               <img
                 src="@/assets/dollar-btc.png"

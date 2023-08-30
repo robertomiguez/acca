@@ -24,11 +24,12 @@ export const useTransactionStore = defineStore('transactionStore', () => {
       prices.value.forEach((price: number[], index: number) => {
         if (
           periodicity.value?.id === 1 || // if is diary print all
-          index % (periodicity.value?.id as number) === 0 //  or calc the periodicity
+          (index % (periodicity.value?.id as number) === 0 && //  or calc the periodicity
+            !(moment(price[0]).format('DDMMYY') === moment().format('DDMMYY'))) // do not add today into array
         ) {
           dayPrice = price[1];
-          purchaseAcc.value += +purchaseAmount.value;
-          quantityCrypto = +purchaseAmount.value / +price[1];
+          purchaseAcc.value += +(<number>purchaseAmount.value);
+          quantityCrypto = +(<number>purchaseAmount.value) / +price[1];
           quantityCryptoAcc.value += +quantityCrypto;
           transactions.value.push({
             dateTime: moment(price[0]).format('DD/MM/YY'),
