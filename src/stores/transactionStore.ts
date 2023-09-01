@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia';
 import { Transaction } from '@/types/TransactionType';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { ref } from 'vue';
 import { useSettingsStore } from '@/stores/settingsStore';
 
@@ -25,14 +25,17 @@ export const useTransactionStore = defineStore('transactionStore', () => {
         if (
           periodicity.value?.id === 1 || // if is diary print all
           (index % (periodicity.value?.id as number) === 0 && //  or calc the periodicity
-            !(moment(price[0]).format('DDMMYY') === moment().format('DDMMYY'))) // do not add today into array
+            !(
+              format(new Date(price[0]), 'ddMMyy') ===
+              format(new Date(), 'ddMMyy')
+            )) // do not add today into array
         ) {
           dayPrice = price[1];
           purchaseAcc.value += +(<number>purchaseAmount.value);
           quantityCrypto = +(<number>purchaseAmount.value) / +price[1];
           quantityCryptoAcc.value += +quantityCrypto;
           transactions.value.push({
-            dateTime: moment(price[0]).format('DD/MM/YY'),
+            dateTime: format(new Date(price[0]), 'dd/MM/yy'),
             price: dayPrice,
             purchaseAcc: purchaseAcc.value,
             quantityCrypto,
