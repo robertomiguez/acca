@@ -16,21 +16,18 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
 .ion-card-regular {
   height: 295px;
-  margin-left: -1px;
-  margin-right: -1px;
+  margin: -1px;
 }
 
 .ion-card-medium {
   height: 160px;
-  margin-left: -1px;
-  margin-right: -1px;
+  margin: -1px;
   text-align: center;
 }
 
 .ion-card-small {
   height: 45px;
-  margin-left: -1px;
-  margin-right: -1px;
+  margin: -1px;
   text-align: center;
 }
 
