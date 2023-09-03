@@ -39,7 +39,7 @@
             sizeMd="3"
             sizeXs="3"
             class="ion-text-center"
-            >Qty Acc {{ cryptoCoin?.symbol }}</ion-col
+            >{{ cryptoCoin?.symbol }} acc</ion-col
           >
         </ion-row>
         <ion-row
