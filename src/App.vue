@@ -46,7 +46,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 }
 
 img {
-  width: 75%;
+  width: 60%;
   display: block;
   margin-left: auto;
   margin-right: auto;
