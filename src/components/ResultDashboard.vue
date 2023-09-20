@@ -21,7 +21,7 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        <h2>Quantity of Bitcoin</h2>
+        <h2>Quantity of {{ cryptoCoin?.name }}</h2>
         <p>{{ cryptoCoin?.symbol }} {{ quantityCryptoAcc?.toFixed(8) }}</p>
       </ion-label>
     </ion-item>
